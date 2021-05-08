@@ -14,6 +14,9 @@ class ExTextField extends StatefulWidget {
   final String value;
   final String hintText;
   final TextFieldType textFieldType;
+  final TextInputType keyboardType;
+  final bool enabled;
+  final double height;
 
   final Function(String text) onChanged;
   final Function(String text) onSubmitted;
@@ -24,8 +27,11 @@ class ExTextField extends StatefulWidget {
     this.value = "",
     this.hintText = "",
     this.textFieldType = TextFieldType.normal,
+    this.keyboardType,
     this.onChanged,
     this.onSubmitted,
+    this.enabled = true,
+    this.height,
   });
 
   @override
@@ -46,6 +52,7 @@ class _ExTextFieldState extends State<ExTextField> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: widget.height ?? 90,
       padding: EdgeInsets.all(10.0),
       decoration: BoxDecoration(
           // color: Colors.white,
@@ -66,30 +73,47 @@ class _ExTextFieldState extends State<ExTextField> {
           SizedBox(
             height: 4.0,
           ),
-          Container(
-            padding: EdgeInsets.all(10.0),
-            decoration: BoxDecoration(
-              border: Border.all(
-                width: 1.0,
-                color: Colors.grey[300],
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.all(10.0),
+              decoration: BoxDecoration(
+                color: theme.disabled,
+                border: Border.all(
+                  width: 0.0,
+                  color: theme.disabled,
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(4.0)),
               ),
-              borderRadius: BorderRadius.all(Radius.circular(4.0)),
-            ),
-            child: TextField(
-              controller: controller,
-              obscureText:
-                  widget.textFieldType == TextFieldType.password ? true : false,
-              decoration: InputDecoration.collapsed(
-                hintText: widget.hintText,
+              child: TextField(
+                enabled: widget.enabled,
+                keyboardType: widget.keyboardType,
+                maxLines:
+                    widget.keyboardType == TextInputType.multiline ? 5 : 1,
+                style: TextStyle(
+                  color: widget.enabled
+                      ? theme.textColor
+                      : theme.textColor.withOpacity(0.4),
+                ),
+                controller: controller,
+                obscureText: widget.textFieldType == TextFieldType.password
+                    ? true
+                    : false,
+                decoration: InputDecoration.collapsed(
+                  hintText: widget.hintText,
+                  hintStyle: TextStyle(
+                    color: theme.textColor.withOpacity(0.3),
+                  ),
+                ),
+                onChanged: (text) {
+                  Input.set(widget.id, text);
+                  if (widget.onChanged != null) return widget.onChanged(text);
+                },
+                onSubmitted: (text) {
+                  Input.set(widget.id, text);
+                  if (widget.onSubmitted != null)
+                    return widget.onSubmitted(text);
+                },
               ),
-              onChanged: (text) {
-                Input.set(widget.id, text);
-                if (widget.onChanged != null) return widget.onChanged(text);
-              },
-              onSubmitted: (text) {
-                Input.set(widget.id, text);
-                if (widget.onSubmitted != null) return widget.onSubmitted(text);
-              },
             ),
           ),
         ],
