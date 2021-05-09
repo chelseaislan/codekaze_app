@@ -6,11 +6,12 @@ showSnackbar({
   String title = "Info",
   String message = "",
   IconData icon = Icons.info,
+  Color backgroundColor,
 }) {
   Get.snackbar(
     title,
     message,
-    backgroundColor: theme.mainColor,
+    backgroundColor: backgroundColor ?? theme.mainColor,
     colorText: Colors.white,
     icon: Icon(icon),
   );
