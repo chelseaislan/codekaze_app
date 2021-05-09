@@ -6,8 +6,8 @@ final defaultFontFamily = GoogleFonts.roboto();
 final ThemeData appThemeData = ThemeData(
   primaryColor: Colors.white,
   accentColor: Colors.white,
-  backgroundColor: Colors.white,
-  scaffoldBackgroundColor: Colors.white,
+  backgroundColor: theme.backgroundColor,
+  scaffoldBackgroundColor: theme.backgroundColor,
   fontFamily: defaultFontFamily.fontFamily,
   textTheme: TextTheme(
     headline1: TextStyle(
@@ -18,7 +18,7 @@ final ThemeData appThemeData = ThemeData(
   appBarTheme: AppBarTheme(
     elevation: 2.0,
     shadowColor: Colors.grey[50],
-    color: Colors.white,
+    color: theme.mainColor,
     iconTheme: IconThemeData(
       color: theme.textColor,
     ),
@@ -44,14 +44,18 @@ final ThemeData appThemeData = ThemeData(
     ),
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    backgroundColor: Colors.white,
+    backgroundColor: theme.backgroundColor,
     selectedItemColor: theme.mainColor,
   ),
 );
 
 class ApplicationTheme {
   Color get mainColor {
-    return Colors.green[400];
+    return Color(0xff075B9A);
+  }
+
+  Color get backgroundColor {
+    return Color(0xffF8F9FA);
   }
 
   Color get appBarColor {
