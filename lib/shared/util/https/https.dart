@@ -38,15 +38,72 @@ class Https {
   Future<http.Response> post({
     String url,
     dynamic data,
+    Map<String, String> headers,
   }) async {
     var response = await http.post(
       Uri.parse(url),
       body: json.encode(data),
-      headers: defaultHeader(),
+      headers: headers ?? defaultHeader(),
     );
 
     print("---------");
     print("[POST]");
+    print(url);
+    print("---------");
+    print("Headers:");
+    print(defaultHeader());
+    print("---------");
+    print("Data:");
+    print(data);
+    print("---------");
+    print("Response:");
+    print(response.body);
+    print("---------");
+
+    return response;
+  }
+
+  Future<http.Response> put({
+    String url,
+    dynamic data,
+    Map<String, String> headers,
+  }) async {
+    var response = await http.put(
+      Uri.parse(url),
+      body: json.encode(data),
+      headers: headers ?? defaultHeader(),
+    );
+
+    print("---------");
+    print("[PUT]");
+    print(url);
+    print("---------");
+    print("Headers:");
+    print(defaultHeader());
+    print("---------");
+    print("Data:");
+    print(data);
+    print("---------");
+    print("Response:");
+    print(response.body);
+    print("---------");
+
+    return response;
+  }
+
+  Future<http.Response> delete({
+    String url,
+    dynamic data,
+    Map<String, String> headers,
+  }) async {
+    var response = await http.delete(
+      Uri.parse(url),
+      body: json.encode(data),
+      headers: headers ?? defaultHeader(),
+    );
+
+    print("---------");
+    print("[DELETE]");
     print(url);
     print("---------");
     print("Headers:");
