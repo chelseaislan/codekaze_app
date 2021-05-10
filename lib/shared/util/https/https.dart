@@ -22,7 +22,7 @@ class Https {
     );
 
     print("---------");
-    print("[GET]");
+    print("[GET]    ");
     print(url);
     print("---------");
     print("Headers:");
