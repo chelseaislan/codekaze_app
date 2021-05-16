@@ -26,6 +26,4 @@ export 'package:demo_app/shared/widget/combo/combo.dart';
 export 'package:demo_app/shared/widget/datepicker/datepicker.dart';
 export 'package:demo_app/shared/widget/radio/radio.dart';
 export 'package:demo_app/shared/widget/textfield/textfield.dart';
-export 'package:demo_app/xgenerated/generated_router.dart';
-
 export 'package:get/get.dart';
