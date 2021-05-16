@@ -17,7 +17,7 @@ class ExMemoField extends StatelessWidget {
     return ExTextField(
       id: "$id",
       label: "$label",
-      value: "$value",
+      value: value,
       height: 200,
       keyboardType: TextInputType.multiline,
     );
